@@ -15,19 +15,13 @@
                 <ul class="nav navbar-nav">
 
               <?php 
-
                     $query = "SELECT * FROM categories ";
                     $select_all_from_categories = mysqli_query($connection,$query);
 
                     while($row= mysqli_fetch_assoc($select_all_from_categories)){
-
                         $cat_title = $row['cat_title'];
-
                         echo "<li><a href='#'>{$cat_title}</a></li>";
                     }
-
-
-
                ?>
 
 
