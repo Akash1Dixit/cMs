@@ -45,6 +45,35 @@
                                 </div>
 
                             </form>
+
+                             <?php //FOR EDIT THEN UPDATE
+                            if(isset($_GET['edit'])){
+                                $edit_cat_id = $_GET['edit'];
+                                $query = "SELECT * FROM categories WHERE cat_id = {$edit_cat_id} ";
+                                $edit_all_from_categories = mysqli_query($connection,$query);
+
+                        while($row= mysqli_fetch_assoc($edit_all_from_categories)){
+                        $cat_id = $row['cat_id'];
+                        $cat_title = $row['cat_title'];  ?>
+
+                          <input value="<?php if(isset($cat_title)){echo $cat_title ;}  ?>" type="text"  class="form-control" name="cat_title" />
+
+                          <?php  } } ?>
+                             <form action=""  method="post">
+                                <div class="form-group">
+                                    <label for="cat-title">Edit Category</label>
+                                </div>
+                                <div class="form-group"> 
+
+                                    <input type="submit" class="btn btn-success" name="submit" value="EuP Category" />
+                                </div>
+
+                            </form>
+                           
+
+
+
+                            
                         </div>
                         <div class="col-xs-6">
                      <?php 
@@ -69,6 +98,8 @@
                         echo "<td>{$cat_id}</td>";
                         echo "<td>{$cat_title}</td>";
                         echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
+
+                        echo "<td><a href='categories.php?edit={$cat_id}'>Edit</a></td>";
                         echo "<tr>";
                        } 
                      ?>
