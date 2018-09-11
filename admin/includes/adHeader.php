@@ -1,4 +1,5 @@
 <?php ob_start(); ?>
+<?php include "adFunctions.php" ;?>
 <?php include "../includes/db.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
