@@ -28,25 +28,13 @@
                                 </div>
 
                             </form>
-
                                    <?php if(isset($_GET['edit'])){
                                      $cat_id = $_GET['edit'];
                                      include  "includes/adUpdateCat.php";
 
                                    } ?>
-
-
-
-
-                            
                         </div>
                         <div class="col-xs-6">
-                     <?php 
-                          $query = "SELECT * FROM categories ";
-                          $select_all_from_categories = mysqli_query($connection,$query);
-
-                         ?>
-
                             <table class="table table-bordered table-dark table-hover">
                                 <thead>
                                     <tr>
@@ -55,30 +43,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>                    
-                  <?php
-                    while($row= mysqli_fetch_assoc($select_all_from_categories)){
-                        $cat_id = $row['cat_id'];
-                        $cat_title = $row['cat_title'];
-                        echo "<tr>";
-                        echo "<td>{$cat_id}</td>";
-                        echo "<td>{$cat_title}</td>";
-                        echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
-
-                        echo "<td><a href='categories.php?edit={$cat_id}'>Edit</a></td>";
-                        echo "<tr>";
-                       } 
-                     ?>
-                     <?php 
-                           if(isset($_GET['delete'])){
-                            $the_cat_id = $_GET['delete'];
-                            $query = "DELETE FROM categories WHERE cat_id= {$the_cat_id} ";
-                            $delete_query = mysqli_query($connection,$query);
-
-                            header("LOCATION:categories.php");
-                           }
-
-
-                      ?>
+                    <?php
+                          findAllCategories();
+                    ?>
+                    <?php 
+                        deleteCategories();
+                    ?>
                                 </tbody>
                             </table>
                         </div>
