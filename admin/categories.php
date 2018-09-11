@@ -46,30 +46,12 @@
 
                             </form>
 
-                             <?php //FOR EDIT THEN UPDATE
-                            if(isset($_GET['edit'])){
-                                $edit_cat_id = $_GET['edit'];
-                                $query = "SELECT * FROM categories WHERE cat_id = {$edit_cat_id} ";
-                                $edit_all_from_categories = mysqli_query($connection,$query);
+                                   <?php if(isset($_GET['edit'])){
+                                     $cat_id = $_GET['edit'];
+                                     include  "includes/adUpdateCat.php";
 
-                        while($row= mysqli_fetch_assoc($edit_all_from_categories)){
-                        $cat_id = $row['cat_id'];
-                        $cat_title = $row['cat_title'];  ?>
+                                   } ?>
 
-                          <input value="<?php if(isset($cat_title)){echo $cat_title ;}  ?>" type="text"  class="form-control" name="cat_title" />
-
-                          <?php  } } ?>
-                             <form action=""  method="post">
-                                <div class="form-group">
-                                    <label for="cat-title">Edit Category</label>
-                                </div>
-                                <div class="form-group"> 
-
-                                    <input type="submit" class="btn btn-success" name="submit" value="EuP Category" />
-                                </div>
-
-                            </form>
-                           
 
 
 
