@@ -1,3 +1,30 @@
+<?php 
+
+       if(isset($_POST['create_post'])){
+            $post_title = $_POST['post_title'];
+            $post_author= $_POST['post_author'];
+            $post_category_id=$_POST['post_category_id'];
+            $post_status=$_POST['post_status'];
+            $post_image=$_FILES['post_image']['name'];
+            $tmp_image = $_FILES['post_image']['tmp_name'];
+            $post_tags=$_POST['post_tags'];
+            $post_content=$_POST['post_content'];
+            $post_date = date('dd-mm-yy');
+            $post_comment_count=4;
+
+
+    $imageResult = move_uploaded_file($tmp_image, '../images/$post_image');
+
+$query = "INSERT INTO posts(post_category_id,post_title,post_author,post_date,post_image,post_content,post_tags,post_comment_count,post_status) " ;
+$query   .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}', '{$post_tags}' ,{$post_comment_count}, '{$post_status}' ) ";
+
+
+      $publish_query  = mysqli_query($connection,$query);
+    if(!$publish_query){
+	 die("Failed".mysqli_error($connection));
+    }
+       }
+ ?>
 <form action="" method="post" enctype="multipart/form-data">
 	<div class="form-group">
 		<label for="post_title">Post Title</label>
