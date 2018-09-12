@@ -25,7 +25,7 @@
 	</div>
 	<div class="form-group">
 		<label for="post_category_id">Post Category Id</label>
-		<select name="post_category_id" id="">
+		<select name="post_category" id="">
 			<?php 
 		    $query = "SELECT * FROM categories ";
 		    $option_query= mysqli_query($connection,$query);
@@ -49,6 +49,7 @@
 	</div>
 	<div class="form-group">
 		<img width="100" src="../images/<?php echo $post_image; ?>" alt="">
+		<input type="file" name="post_image">
 	</div>
 	<div class="form-group">
 		<label for="post_tags">Post Tags</label>
