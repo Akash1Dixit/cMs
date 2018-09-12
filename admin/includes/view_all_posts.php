@@ -39,11 +39,29 @@
                                echo "<td> $post_tags</td>";
                                echo "<td></td>";
                                echo "<td> $post_date</td>";
+                               echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
+                               echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
+
                            echo "</tr>";
 
+
                     }
+
+                           if(isset($_GET['delete'])){
+
+                              $delete = $_GET['delete'];
+
+                              $query =  "DELETE FROM posts WHERE post_id= {$delete} ";
+                              $result = mysqli_query($connection,$query);
+                              header("LOCATION:posts.php");
+                              if(!$result){
+                                die("Failed to connect".mysqli_error($connection));
+
+                              }
+                             }
 
                      ?>
                                 
                             </tbody>
                         </table>
+                       
