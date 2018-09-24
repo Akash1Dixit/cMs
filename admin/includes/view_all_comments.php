@@ -41,9 +41,16 @@
                          echo "<td><a href='posts.php?source=edit_post&p_id='>Approve</a></td>";
                          echo "<td><a href='posts.php?delete='>Unapprove</a></td>";
                          
+                        $query = "SELECT * FROM posts WHERE post_id=$comment_post_id ";
+                        $result = mysqli_query($connection,$query);
+                        while($row=mysqli_fetch_assoc($result)){
+                          $post_id = $row['post_id'];
+                          $post_title = $row['post_title'];
+
+                         echo "<td><a href='../post.php?p_id=$post_id'>$post_title</a></td>";
+
+                        }
                         
-                        
-                         echo "<td>Some Title</td>";
                          echo "<td> $comment_date</td>";
                          
                          echo "<td><a href='posts.php?delete='>Delete</a></td>";
