@@ -60,7 +60,21 @@
                  <?php 
 
                        if(isset($_POST['comment_btn'])){
-                        echo $_POST['comment_author'];
+
+                          $the_post_id=$_GET['p_id'];
+                          $comment_author=$_POST['comment_author'];
+                          $comment_email=$_POST['comment_email'];
+                          $comment_content= $_POST['comment_content'];
+
+                          $query = "INSERT INTO comments(comment_post_id,comment_author,comment_email,comment_content,comment_status,comment_date) ";
+
+                        $query .= " VALUES($the_post_id,'{$comment_author}','{$comment_email}','{$comment_content}', 'unapproved', now() ) ";
+
+                          $result = mysqli_query($connection,$query);
+                          if(!$result){
+                            die("Failed".mysqli_error($connection));
+                          }
+
                        }
 
                   ?>
@@ -79,7 +93,7 @@
                         </div>
                         <div class="form-group">
                             <label for="content">Content</label>
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control" name="comment_content" rows="3"></textarea>
                         </div>
                         <button type="submit" name="comment_btn" class="btn btn-primary">Submit</button>
                     </form>
